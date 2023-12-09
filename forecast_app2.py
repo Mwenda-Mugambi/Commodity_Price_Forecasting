@@ -27,8 +27,8 @@ def arima_model(ref, date_input):
     ref['date'] = pd.to_datetime(ref['date'])
     date_r = pd.to_datetime(date_input)
     n = (date_r - ref['date'].iloc[-1]).days  # Access the last date in 'ref'
-    
-    st.write("Model in Progress...")
+    # progress_placeholder = st.empty()
+    # progress_placeholder.text("Model in Progress...")
     
     df = pd.DataFrame({
         'date': ref['date'],
@@ -69,21 +69,70 @@ def arima_model(ref, date_input):
 
 # Streamlit UI
 def main():
-    st.title('Commodity Price Prediction with ARIMA')
+    # Custom CSS styles
+    st.markdown("""
+    <style>
+    .big-font {
+        font-size:20px !important;
+        font-weight: bold;
+    }
+    .header {
+        color: #ff6347;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-    # Selection of price type, district, and commodity based on the nested dictionary
-    pricetype_selected = st.selectbox('Select Price Type', options=list(nairobi_dict.keys()))
-    district_selected = st.selectbox('Select District', options=list(nairobi_dict[pricetype_selected].keys()))
-    commodity_selected = st.selectbox('Select Commodity', options=list(nairobi_dict[pricetype_selected][district_selected].keys()))
+
+    st.markdown("""
+    <style>
+    div.stButton > button:first-child {
+        background-color: #007bff;  /* Blue color */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 24px;
+        margin: 10px 0;
+    }
+    div.stButton > button:hover {
+        background-color: #0056b3;  /* Darker blue color on hover */
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+
+    st.title('ARIMA Modeling')
+
+
+    # Image banner
+    banner_image_path = 'Design_Assets/Header_image.jpg'  
+    st.image(banner_image_path, use_column_width=True)
+
+    st.markdown('We aim to launch a comprehensive project to analyze and predict ' 
+                'the dynamics of food commodity prices in Nairobi, Kenya. The project '
+                 'utilizes time series analysis to understand trends, fluctuations,' 
+                 ' and seasonality in prices across various markets.', unsafe_allow_html=True)
+
+    # Input selection in columns
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        pricetype_selected = st.selectbox("**Select Price Type**", options=list(nairobi_dict.keys()))
+    with col2:
+        district_selected = st.selectbox('**Select District**', options=list(nairobi_dict[pricetype_selected].keys()))
+    with col3:
+        commodity_selected = st.selectbox('**Select Commodity**', options=list(nairobi_dict[pricetype_selected][district_selected].keys()))
     
-    # User Inputs
-    date_input = st.date_input('Enter desired date for prediction (YYYY-MM-DD):', min_value=datetime.today())
+    date_input = st.date_input('**Enter desired date for prediction:**', min_value=datetime.today())
     
     if st.button('Predict Price'):
-        # Retrieve the reference dataframe for the selected commodity
-        ref = nairobi_dict[pricetype_selected][district_selected][commodity_selected]
-        predicted_price, forecast_df = arima_model(ref, date_input)
-        st.write(f'The price forecast for {commodity_selected} on {date_input.strftime("%Y-%m-%d")} is estimated to be KES {predicted_price}')
+        with st.spinner('Model in Progress...'):
+            ref = nairobi_dict[pricetype_selected][district_selected][commodity_selected]
+            predicted_price, forecast_df = arima_model(ref, date_input)
+
+        st.success("Modeling complete ✔")
+        st.write(f'The price forecast for {commodity_selected} on {date_input.strftime("%Y-%m-%d")} is estimated to be KES {round(predicted_price,2)}')
 
 if __name__ == "__main__":
     main()
+

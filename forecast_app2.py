@@ -52,16 +52,16 @@ def arima_model(ref, date_input):
         'upper_bound': conf_int[:, 1]
     })
 
-    # Plotting the original series and forecasted values
-    plt.figure(figsize=(10, 6))
-    plt.plot(df['date'], df['value'], label='Original Series')
-    plt.plot(forecast_dates, forecast, label='Forecast', color='red')
-    plt.fill_between(forecast_dates, conf_int[:, 0], conf_int[:, 1], color='red', alpha=0.3)
-    plt.title(f'ARIMA price Forecast for {ref["commodity"].iloc[0]}')
-    plt.xlabel('Date')
-    plt.ylabel('Value')
-    plt.legend()
-    st.pyplot(plt)
+    # # Plotting the original series and forecasted values
+    # plt.figure(figsize=(10, 6))
+    # plt.plot(df['date'], df['value'], label='Original Series')
+    # plt.plot(forecast_dates, forecast, label='Forecast', color='red')
+    # plt.fill_between(forecast_dates, conf_int[:, 0], conf_int[:, 1], color='red', alpha=0.3)
+    # plt.title(f'ARIMA price Forecast for {ref["commodity"].iloc[0]}')
+    # plt.xlabel('Date')
+    # plt.ylabel('Value')
+    # plt.legend()
+    # st.pyplot(plt)
 
     # Get the predicted price
     p_price = forecast_df[forecast_df["date"] == date_r]["forecast"].values[0]

@@ -101,6 +101,10 @@ def main():
     </style>
     """, unsafe_allow_html=True)
 
+    # Define commodities and their units
+    commodities_per_kg = ['Wheat', 'Sorghum', 'Maize', 'Potatoes', 'Beans', ]
+    commodities_per_liter = ['Oil (vegetable)', 'Milk']
+
 
     st.title('ARIMA Modeling')
 
@@ -131,7 +135,15 @@ def main():
             predicted_price, forecast_df = arima_model(ref, date_input)
 
         st.success("Modeling complete ✔")
-        st.write(f'The price forecast for {commodity_selected} on {date_input.strftime("%Y-%m-%d")} is estimated to be KES {round(predicted_price,2)}')
+        price_message = f'The price forecast for {commodity_selected} on {date_input.strftime("%Y-%m-%d")} is estimated to be KES {round(predicted_price,2)}'
+
+        # Determine the unit based on the selected commodity
+        if commodity_selected in commodities_per_kg:
+            price_message += " per KG"
+        elif commodity_selected in commodities_per_liter:
+            price_message += " per Liter"
+
+        st.write(price_message)
 
 if __name__ == "__main__":
     main()

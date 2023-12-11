@@ -113,10 +113,8 @@ def main():
     banner_image_path = 'Design_Assets/Header_image.jpg'  
     st.image(banner_image_path, use_column_width=True)
 
-    st.markdown('We aim to launch a comprehensive project to analyze and predict ' 
-                'the dynamics of food commodity prices in Nairobi, Kenya. The project '
-                 'utilizes time series analysis to understand trends, fluctuations,' 
-                 ' and seasonality in prices across various markets.', unsafe_allow_html=True)
+    st.markdown("This product analyzes and predicts the dynamics of food commodity prices in Nairobi, Kenya."
+                "Select a date and the commodity you would like to predict it's prices.", unsafe_allow_html=True)
 
     # Input selection in columns
     col1, col2, col3 = st.columns(3)

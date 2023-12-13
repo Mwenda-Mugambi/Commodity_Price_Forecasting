@@ -6,6 +6,8 @@
 
 This project aimed to analyze and predict wholesale prices in Nairobi, Kenya, harnessing historical data to develop predictive models. It focuses on identifying trends and factors influencing these prices, thereby facilitating informed decision-making in agricultural planning, budgeting, and policy formulation. The project's overarching goal is to contribute to poverty alleviation, improved nutrition, and the realization of the UN Sustainable Development Goal of zero hunger in Kenya.
 
+[Test the deployed model here](https://beanpricepredictions.streamlit.app/)
+
 ## Business Context
 Focused on Nairobi County's volatile food market, this project addresses the challenge of price unpredictability that affects various sectors. By leveraging data analytics and Time series modeling, the goal is to enhance decision-making processes for entities involved in the supply chain, aligning with efforts to combat poverty and ensure food security in Kenya.
 

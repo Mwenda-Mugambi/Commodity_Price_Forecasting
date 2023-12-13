@@ -15,6 +15,13 @@ latest_data.sort_index(inplace=True)
 
 st.title('Bean Price Prediction App')
 
+# Image banner
+banner_image_path = 'Design_Assets/Header_image.jpg'  
+st.image(banner_image_path, use_column_width=True)
+
+st.markdown("This product analyzes and predicts the dynamics of food commodity prices in Nairobi, Kenya."
+                "Select a month and year that you would like to predict prices for.", unsafe_allow_html=True)
+
 def predict_price(model_fit, steps, initial_value):
     # Forecast future prices
     forecast = model_fit.get_forecast(steps=steps)

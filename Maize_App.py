@@ -9,11 +9,11 @@ import joblib
 
 # Load your trained SARIMA models
 models = {
-    'Maize': joblib.load('full_sarima_maize_model.pkl'),
-    'Potatoes': joblib.load('sarima_potatoes_model.pkl'),
-    'Beans': joblib.load('sarima_beans_model.pkl'),
-    'Sorghum': joblib.load('sarima_sorghum_model.pkl')
-}
+    'Maize': joblib.load('sarima_model_fit2.pkl'),
+#     'Potatoes': joblib.load('sarima_potatoes_model.pkl'),
+#     'Beans': joblib.load('sarima_beans_model.pkl'),
+#     'Sorghum': joblib.load('sarima_sorghum_model.pkl')
+ }
 
 # Load your historical data
 historical_data = pd.read_csv('nairobi_df.csv')

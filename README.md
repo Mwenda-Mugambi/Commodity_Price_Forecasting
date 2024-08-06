@@ -1,4 +1,4 @@
-# Commodity_Price_Forecasting
+# Commodity_Price_Forecasting.
 **By:** Charles Kagwanja   **|**   Kevin Kagia  |   Lucy Njambi  |
  Mwenda Mugambi
  
